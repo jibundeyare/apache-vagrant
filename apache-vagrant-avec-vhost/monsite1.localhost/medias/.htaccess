@@ -1,0 +1,5 @@
+# empêcher l'accès aux fichiers d'un certain type
+<Files "*.mp3">
+    Order deny,allow
+    Deny from all
+</Files>

@@ -1,0 +1,20 @@
+# empêcher l'affichage de la liste des fichiers
+Options -Indexes
+
+# empêcher l'accès à un fichier
+<Files "phpinfo.php">
+    Order deny,allow
+    Deny from all
+</Files>
+
+# empêcher l'accès à un fichier
+<Files ".htpasswd">
+    Order deny,allow
+    Deny from all
+</Files>
+
+# redirection temporaire
+Redirect /mp3.php /medias/mp3.php
+
+# redirection permanente
+Redirect permanent /qwant http://qwant.com
