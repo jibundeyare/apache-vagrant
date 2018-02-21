@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# update repositories
 apt-get update
 
 # install apache
@@ -9,7 +10,7 @@ apt-get install -y apache2
 cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.orig
 
 # configure apache (enable .htaccess)
-cp /var/www/html/provision/apache2.conf /etc/apache2/
+cp /vagrant/provision/apache2.conf /etc/apache2/
 
 # install php
 apt-get install -y php7.0
@@ -32,20 +33,3 @@ systemctl restart apache2
 
 # install mysql
 apt-get install -y mysql-server mysql-client
-
-# # install phpmyadmin
-# # login: phpmyadmin
-# # password: 123
-# APP_PASS="123"
-# ROOT_PASS="123"
-# APP_DB_PASS="123"
-#
-# echo "phpmyadmin phpmyadmin/dbconfig-install boolean true" | debconf-set-selections
-# echo "phpmyadmin phpmyadmin/app-password-confirm password $APP_PASS" | debconf-set-selections
-# echo "phpmyadmin phpmyadmin/mysql/admin-pass password $ROOT_PASS" | debconf-set-selections
-# echo "phpmyadmin phpmyadmin/mysql/app-pass password $APP_DB_PASS" | debconf-set-selections
-# echo "phpmyadmin phpmyadmin/reconfigure-webserver multiselect apache2" | debconf-set-selections
-#
-# apt-get install -y phpmyadmin
-#
-# echo "Include /etc/phpmyadmin/apache.conf" >> /etc/apache2/apache2.conf
