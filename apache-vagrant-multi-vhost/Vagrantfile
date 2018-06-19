@@ -44,8 +44,8 @@ Vagrant.configure("2") do |config|
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
   # config.vm.synced_folder "../data", "/vagrant_data"
-  config.vm.synced_folder "monsite1.dev", "/var/www/monsite1.dev", owner: "root", group: "root"
-  config.vm.synced_folder "monsite2.dev", "/var/www/monsite2.dev", owner: "root", group: "root"
+  config.vm.synced_folder "monsite1.local", "/var/www/monsite1.local", owner: "root", group: "root"
+  config.vm.synced_folder "monsite2.local", "/var/www/monsite2.local", owner: "root", group: "root"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.

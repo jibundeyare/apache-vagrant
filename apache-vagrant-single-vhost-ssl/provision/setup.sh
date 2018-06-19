@@ -41,9 +41,12 @@ cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/00
 # configure apache default regular virtual host
 cp /vagrant/provision/000-default.conf /etc/apache2/sites-available/000-default.conf
 
-# enable apache ssl and headers modules
-sudo a2enmod ssl
-sudo a2enmod headers
+# enable apache headers module
+a2enmod headers
+# enable apache sll module
+a2enmod ssl
+# enable apache rewrite module
+a2enmod rewrite
 
 # enable apache ssl params configuration
 a2enconf ssl-params
@@ -96,6 +99,10 @@ echo "phpmyadmin phpmyadmin/app-password-confirm password $phpmyadmin_password" 
 
 # install phpmyadmin
 DEBIAN_FRONTEND=noninteractive apt-get -y install phpmyadmin
+
+# set phpmyadmin user provileges and fix "No Privileges" error
+echo "GRANT ALL PRIVILEGES ON *.* TO 'phpmyadmin'@'localhost' WITH GRANT OPTION;" | mysql
+echo "FLUSH PRIVILEGES;" | mysql
 
 # enable phpmyadmin virtual host
 cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf

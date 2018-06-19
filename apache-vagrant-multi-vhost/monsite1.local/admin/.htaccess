@@ -1,5 +1,5 @@
 # activer l'authentification http
 AuthType Basic
 AuthName "Authentification"
-AuthUserFile /var/www/monsite1.dev/.htpasswd
+AuthUserFile /var/www/monsite1.local/.htpasswd
 Require valid-user

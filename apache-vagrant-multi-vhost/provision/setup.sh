@@ -17,10 +17,10 @@ cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/00
 
 # configure new virtual hosts
 cp /vagrant/provision/000-default.conf /etc/apache2/sites-available/
-cp /vagrant/provision/monsite2.localhost.conf /etc/apache2/sites-available/
+cp /vagrant/provision/monsite2.local.conf /etc/apache2/sites-available/
 
 # enable additional virtual hosts
-a2ensite monsite2.localhost.conf
+a2ensite monsite2.local.conf
 
 # install php
 apt-get install -y php7.0
@@ -37,6 +37,8 @@ a2enmod mpm_event
 a2enconf php7.0-fpm
 # enable proxy fcgi
 a2enmod proxy_fcgi
+# enable apache rewrite module
+a2enmod rewrite
 
 # restart apache2
 systemctl restart apache2
@@ -64,6 +66,10 @@ echo "phpmyadmin phpmyadmin/app-password-confirm password $phpmyadmin_password" 
 
 # install phpmyadmin
 DEBIAN_FRONTEND=noninteractive apt-get -y install phpmyadmin
+
+# set phpmyadmin user provileges and fix "No Privileges" error
+echo "GRANT ALL PRIVILEGES ON *.* TO 'phpmyadmin'@'localhost' WITH GRANT OPTION;" | sudo mysql
+echo "FLUSH PRIVILEGES;" | sudo mysql
 
 # enable phpmyadmin virtual host
 cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf

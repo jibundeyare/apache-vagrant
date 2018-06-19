@@ -27,6 +27,8 @@ a2enmod mpm_event
 a2enconf php7.0-fpm
 # enable proxy fcgi
 a2enmod proxy_fcgi
+# enable apache rewrite module
+a2enmod rewrite
 
 # restart apache2
 systemctl restart apache2
@@ -54,6 +56,10 @@ echo "phpmyadmin phpmyadmin/app-password-confirm password $phpmyadmin_password" 
 
 # install phpmyadmin
 DEBIAN_FRONTEND=noninteractive apt-get -y install phpmyadmin
+
+# set phpmyadmin user provileges and fix "No Privileges" error
+echo "GRANT ALL PRIVILEGES ON *.* TO 'phpmyadmin'@'localhost' WITH GRANT OPTION;" | sudo mysql
+echo "FLUSH PRIVILEGES;" | sudo mysql
 
 # enable phpmyadmin virtual host
 cp /etc/phpmyadmin/apache.conf /etc/apache2/conf-available/phpmyadmin.conf
