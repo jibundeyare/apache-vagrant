@@ -19,7 +19,7 @@ All virtual machines are set configured to run with the IP address `192.168.33.1
 ### Domain names
 
 - `apache-vagrant-single-vhost` is not bound to a particular domain name
-- `apache-vagrant-multi-vhost` is bound to the domain names : `monsite1.local` and `monsite2.local`
+- `apache-vagrant-multi-vhost` is bound to the domain names : `mywebsite1.local` and `monsite2.local`
 - `apache-vagrant-single-vhost-ssl` is not bound to a particular domain name
 
 ### PhpMyAdmin

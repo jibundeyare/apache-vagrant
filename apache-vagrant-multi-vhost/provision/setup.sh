@@ -17,10 +17,10 @@ cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/00
 
 # configure new virtual hosts
 cp /vagrant/provision/000-default.conf /etc/apache2/sites-available/
-cp /vagrant/provision/monsite2.local.conf /etc/apache2/sites-available/
+cp /vagrant/provision/mywebsite2.local.conf /etc/apache2/sites-available/
 
 # enable additional virtual hosts
-a2ensite monsite2.local.conf
+a2ensite mywebsite2.local.conf
 
 # install php
 apt-get install -y php7.0
